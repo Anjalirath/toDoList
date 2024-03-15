@@ -23,7 +23,7 @@ const App = () => {
   };
 
   const handleCheckboxChange = (type, id) => {
-    // Logic to handle checkbox change, you can implement as needed
+
   };
 
   return (
