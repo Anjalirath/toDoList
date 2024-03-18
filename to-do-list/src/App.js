@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AddTask from './components/AddTask';
 import TaskList from './components/TaskList';
 
+
 const App = () => {
   const [emailInputs, setEmailInputs] = useState([]);
   const [phoneInputs, setPhoneInputs] = useState([]);
@@ -23,7 +24,6 @@ const App = () => {
   };
 
   const handleCheckboxChange = (type, id) => {
-    // Logic to handle checkbox change, you can implement as needed
   };
 
   return (
