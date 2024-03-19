@@ -1,38 +1,34 @@
 import React, { useState } from 'react';
-import AddTask from './components/AddTask';
-import TaskList from './components/TaskList';
-
+import Form from './components/Form';
+import TodoList from './components/TodoList';
+import './App.css'
 
 const App = () => {
-  const [emailInputs, setEmailInputs] = useState([]);
-  const [phoneInputs, setPhoneInputs] = useState([]);
+  const [todos, setTodos] = useState([]);
 
-  const handleAddEmail = (email) => {
-    setEmailInputs([...emailInputs, { id: Date.now(), email }]);
+  const addTodo = (todo) => {
+    setTodos([...todos, { ...todo, done: false }]);
   };
 
-  const handleAddPhone = (phone) => {
-    setPhoneInputs([...phoneInputs, { id: Date.now(), phone }]);
+  const deleteTodo = (index) => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
   };
 
-  const handleDeleteInput = (type, id) => {
-    if (type === 'email') {
-      setEmailInputs(emailInputs.filter((input) => input.id !== id));
-    } else if (type === 'phone') {
-      setPhoneInputs(phoneInputs.filter((input) => input.id !== id));
-    }
-  };
-
-  const handleCheckboxChange = (type, id) => {
+  const toggleTodo = (index) => {
+    const newTodos = [...todos];
+    newTodos[index].done = !newTodos[index].done;
+    setTodos(newTodos);
   };
 
   return (
-    <div className="todo-list">
-      <h1>Todo List</h1>
-      <AddTask onAddEmail={handleAddEmail} onAddPhone={handleAddPhone} />
-      <TaskList inputs={emailInputs} type="email" onDelete={handleDeleteInput} onCheckboxChange={handleCheckboxChange} />
-      <TaskList inputs={phoneInputs} type="phone" onDelete={handleDeleteInput} onCheckboxChange={handleCheckboxChange} />
+    <div className="container">
+      <h1>Todo App</h1>
+      <Form addTodo={addTodo} />
+      <TodoList todos={todos} deleteTodo={deleteTodo} toggleTodo={toggleTodo} />
     </div>
   );
 };
+
 export default App;
