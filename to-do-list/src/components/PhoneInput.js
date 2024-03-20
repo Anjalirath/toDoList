@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
+import React  from 'react';
+import { TextField } from '@mui/material';
 
-const PhoneInput = ({ setPhone }) => {
-  const [phone, setPhoneLocal] = useState('');
-
-  const handleChange = (e) => {
-    setPhoneLocal(e.target.value);
-    setPhone(e.target.value);
-  };
+const PhoneInput = ({ value, onChange }) => {
+ 
 
   return (
     <div>
       <label>Phone: </label>
-      <input
+      <TextField id="standard-basic" label="Phone No." variant="standard" 
         type="tel"
-        value={phone}
-        onChange={handleChange}
+        value={value}
+        onChange={onChange}
         required
       />
     </div>

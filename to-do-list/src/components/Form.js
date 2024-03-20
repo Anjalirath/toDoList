@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import NoteInput from './NotesInput';
-import NameInput from './NameInput';
-import EmailInput from './EmailInput';
-import PhoneInput from './PhoneInput';
+import { useDispatch } from 'react-redux';
+import { addTodo } from '../states/todosSlice';
 import { Button } from '@mui/material';
+import NotesInput from './NotesInput'
+import NameInput from './NameInput'
+import EmailInput from './EmailInput'
+import PhoneInput from './PhoneInput'
 
-const Form = ({ addTodo }) => {
+
+const Form = () => {
+  const dispatch = useDispatch();
   const [note, setNote] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -13,32 +17,20 @@ const Form = ({ addTodo }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (note.length < 5) {
-      alert('Note must be at least 5 characters long.');
-      return;
-    }
-    if (!name || !email || !phone) {
-      alert('Please fill out all fields.');
-      return;
-    }
-    // Further validation for email and phone can be added if needed
-
-    addTodo({ note, name, email, phone });
+    if(note.length>4){
+    dispatch(addTodo({ note, name, email, phone, done: false }));
     setNote('');
     setName('');
     setEmail('');
     setPhone('');
+    }
   };
-
   return (
     <form onSubmit={handleSubmit}>
-      <NoteInput setNote={setNote} />
-      <br />
-      <NameInput setName={setName} />
-      <br />
-      <EmailInput setEmail={setEmail} />
-      <br />
-      <PhoneInput setPhone={setPhone} />
+      <NotesInput value={note} onChange={(e) => setNote(e.target.value)} />
+      <NameInput value={name} onChange={(e) => setName(e.target.value)} />
+      <EmailInput value={email} onChange={(e) => setEmail(e.target.value)} />
+      <PhoneInput value={phone} onChange={(e) => setPhone(e.target.value)} />
       <br />
       <Button variant="contained" type="submit">Submit</Button>
     </form>

@@ -1,35 +1,37 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteTodo, toggleTodo } from '../states/todosSlice';
 import { Button, Checkbox } from '@mui/material';
 
-const TodoList = ({ todos, deleteTodo, toggleTodo }) => {
+const TodoList = () => {
+  const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
+
   const handleDelete = (index) => {
-    deleteTodo(index);
+    dispatch(deleteTodo(index));
   };
+
   const handleToggle = (index) => {
-    toggleTodo(index);
+    dispatch(toggleTodo(index));
   };
+
   return (
-    <div>
-      <h2>Todo List</h2>
-      <ul>
+    <ul>
       {todos.map((todo, index) => (
-          <li key={index}>
-            <Checkbox
-              type="checkbox"
-              checked={todo.done}
-              onChange={() => handleToggle(index)}
-            />
-          
-            <span>Note: {todo.note}</span>
-            <span>{todo.name}</span>
-            <span>{todo.email}</span>
-            <span>{todo.phone}</span>
-            
-            <Button variant="contained" onClick={() => handleDelete(index)}>Delete</Button>
-          </li>
-        ))}
-      </ul>
-    </div>
+        <li key={index}>
+          <Checkbox 
+            type="checkbox"
+            checked={todo.done}
+            onChange={() => handleToggle(index)}
+          />
+          <span>Note: {todo.note}</span>
+          <span>Name: {todo.name}</span>
+          <span>Email: {todo.email}</span>
+          <span>Phone: {todo.phone}</span>
+          <Button variant="contained" onClick={() => handleDelete(index)}>Delete</Button>
+        </li>
+      ))}
+    </ul>
   );
 };
 

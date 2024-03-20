@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { TextField } from '@mui/material';
 
-const NoteInput = ({ setNote }) => {
-  const [note, setNoteLocal] = useState('');
-
+const NoteInput = ({ value, onChange }) => {
   const handleChange = (e) => {
-    setNoteLocal(e.target.value);
-    setNote(e.target.value);
+    if (e.target.value.length <= 254) {
+      onChange(e);
+    }
   };
-
   return (
     <div>
       <label>Note: </label>
-      <textarea
-        value={note}
+      <TextField id="standard-basic" label="Write Note" variant="standard" 
+        value={value}
         onChange={handleChange}
-        maxLength={254}
-        minLength={5}
         required
+        inputProps={{ minLength: 5, maxLength: 254 }}
       />
+      {(value.length < 5 || value.length > 254) && (
+        <p style={{ color: 'red' }}>
+          *Note must be between 5 and 254 characters long
+        </p>
+      )}
     </div>
   );
 };

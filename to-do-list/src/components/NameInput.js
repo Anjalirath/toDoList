@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
+import React  from 'react';
+import { TextField } from '@mui/material';
 
-const NameInput = ({ setName }) => {
-  const [name, setNameLocal] = useState('');
+const NameInput = ({ value, onChange }) => {
 
-  const handleChange = (e) => {
-    setNameLocal(e.target.value);
-    setName(e.target.value);
-  };
 
   return (
     <div>
       <label>Name: </label>
-      <input
+      <TextField id="standard-basic" label="Name" variant="standard" 
         type="text"
-        value={name}
-        onChange={handleChange}
+        value={value}
+        onChange={onChange}
         required
       />
     </div>

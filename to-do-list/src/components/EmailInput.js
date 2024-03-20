@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { TextField } from '@mui/material';
 
-const EmailInput = ({ setEmail }) => {
-  const [email, setEmailLocal] = useState('');
+const EmailInput = ({ value, onChange }) => {
 
-  const handleChange = (e) => {
-    setEmailLocal(e.target.value);
-    setEmail(e.target.value);
-  };
 
   return (
     <div>
       <label>Email: </label>
-      <input
+      <TextField id="standard-basic" label="Email Address" variant="standard" 
         type="email"
-        value={email}
-        onChange={handleChange}
+        value={value}
+        onChange={onChange}
         required
       />
     </div>

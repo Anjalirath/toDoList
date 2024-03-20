@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { Provider } from 'react-redux';
+import store from './states/store';
 import Form from './components/Form';
 import TodoList from './components/TodoList';
 import './App.css'
+
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -13,7 +16,7 @@ const App = () => {
   const deleteTodo = (index) => {
     const newTodos = [...todos];
     newTodos.splice(index, 1);
-    setTodos(newTodos);
+    setTodos(newTodos)
   };
 
   const toggleTodo = (index) => {
@@ -23,11 +26,14 @@ const App = () => {
   };
 
   return (
+    <Provider store={store}>
     <div className="container">
       <h1>Todo App</h1>
+   
       <Form addTodo={addTodo} />
       <TodoList todos={todos} deleteTodo={deleteTodo} toggleTodo={toggleTodo} />
     </div>
+    </Provider>
   );
 };
 
