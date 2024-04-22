@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Provider } from 'react-redux';
-import store from './states/store';
+import store from './store/store';
 import Form from './components/Form';
 import TodoList from './components/TodoList';
 import './App.css'

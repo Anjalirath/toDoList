@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../states/todosSlice';
+import { addTodo } from '../store/todosSlice';
 import { Button } from '@mui/material';
 import NotesInput from './NotesInput'
 import NameInput from './NameInput'

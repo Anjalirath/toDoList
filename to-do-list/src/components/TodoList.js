@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteTodo, toggleTodo } from '../states/todosSlice';
+import { deleteTodo, toggleTodo } from '../store/todosSlice';
 import { Button, Checkbox } from '@mui/material';
 
 const TodoList = () => {
