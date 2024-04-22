@@ -19,7 +19,7 @@ const App = () => {
     setTodos(newTodos)
   };
 
-  const toggleTodo = (index) => {
+  const doneTodo = (index) => {
     const newTodos = [...todos];
     newTodos[index].done = !newTodos[index].done;
     setTodos(newTodos);
@@ -31,7 +31,7 @@ const App = () => {
       <h1>Todo App</h1>
    
       <Form addTodo={addTodo} />
-      <TodoList todos={todos} deleteTodo={deleteTodo} toggleTodo={toggleTodo} />
+      <TodoList todos={todos} deleteTodo={deleteTodo} doneTodo={doneTodo} />
     </div>
     </Provider>
   );

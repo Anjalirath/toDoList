@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteTodo, toggleTodo } from '../store/todosSlice';
+import { deleteTodo, doneTodo } from '../store/todosSlice';
 import { Button, Checkbox } from '@mui/material';
 
 const TodoList = () => {
@@ -12,7 +12,7 @@ const TodoList = () => {
   };
 
   const handleToggle = (index) => {
-    dispatch(toggleTodo(index));
+    dispatch(doneTodo(index));
   };
 
   return (
